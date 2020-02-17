@@ -1,5 +1,7 @@
 {
-  "name": "EjemploLog",
-  "integrations": {},
+  "name": "PolvorApp",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
