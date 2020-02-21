@@ -3,7 +3,7 @@
     <name>MyApp</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://localhost:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -101,6 +101,7 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-plugin-googleplus" spec="^8.2.1">
         <variable name="WEB_APPLICATION_CLIENT_ID" value="330021434708-bes1j0n9okr8sk66a6gj3q4bhr4tl6c0.apps.googleusercontent.com" />
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.330021434708-bes1j0n9okr8sk66a6gj3q4bhr4tl6c0"
     </plugin>
     <allow-navigation href="http://localhost:8100" sessionid="9354ea46" />
 </widget>

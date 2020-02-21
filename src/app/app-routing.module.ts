@@ -12,13 +12,19 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
-  { path: 'register', 
+  { 
+    path: 'register', 
     loadChildren: () => import('./register/register.module').then(m=> m.RegisterPageModule)
+  },
+  {
+    path: 'reserva/:m',
+    loadChildren: () => import('./reserva/reserva.module').then( m => m.ReservaPageModule)
   },
   {
     path:'**',
     redirectTo: ''
   }
+  
 ];
 @NgModule({
   imports: [

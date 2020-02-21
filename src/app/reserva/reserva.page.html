@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Reservar {{mesa}}</ion-title>
+    <ion-label slot="end">0 €</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="reservaForm" (ngSubmit)="addComida()">
+    <ion-item>
+      <ion-label >Fecha</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" min="2020-01-01" max="2020-04-31" placeholder="Selecciona Fecha" formControlName="fecha"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Start Time</ion-label>
+      <ion-datetime display-format="HH:mm " hourValues="13,14,15,20,21,22,23" minuteValues="0,30" placeholder="Selecciona Hora" formControlName="hora"></ion-datetime>
+    </ion-item>
+
+    <ion-list>
+      <ion-list-header style="font-size: large; text-decoration: solid;">Comida</ion-list-header>
+  
+      <ion-item *ngFor="let entry of form">
+        <ion-label>{{entry.val}}</ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" formControlName="comida"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Notes</ion-label>
+        <ion-textarea formControlName="comentario"></ion-textarea>
+      </ion-item>
+
+    </ion-list>
+  </form>
+</ion-content>

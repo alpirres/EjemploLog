@@ -19,7 +19,7 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export function HttpLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http,"./assets/i18n/",".json");
@@ -32,6 +32,7 @@ export function HttpLoaderFactory(http:HttpClient){
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     TranslateModule,
     HttpClientModule,
@@ -47,6 +48,7 @@ export function HttpLoaderFactory(http:HttpClient){
     GooglePlus,
     NativeStorage,
     AuthGuardService,
+    FormsModule,
     AuthService,
     TranslateService,
     HttpClient,

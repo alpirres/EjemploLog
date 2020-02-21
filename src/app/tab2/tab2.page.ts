@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
+import { NavigationOptions } from '@ionic/angular/dist/providers/nav-controller';
 
 @Component({
   selector: 'app-tab2',
@@ -8,10 +10,11 @@ import { Router } from '@angular/router';
 })
 export class Tab2Page {
 
-  constructor(private router:Router) {}
+  constructor(private navCtrl: NavController) {}
 
-  public cerrarSesion(){
-    this.router.navigate(['/tabs'])
+  public cerrarSesion(mesa:string){
+    console.log("dcdfv------"+mesa);
+    this.navCtrl.navigateForward('/reserva/'+mesa);
   }
 
 }

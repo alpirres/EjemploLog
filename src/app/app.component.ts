@@ -14,6 +14,20 @@ import { Routes, Router, NavigationEnd } from '@angular/router';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
+  public appPages = [
+    
+    {
+      title: 'Como Llegar',
+      url: '/login',
+      icon: 'navigate'
+    },
+    {
+      title: 'Cerrar Sesion',
+      url: 'login',
+      icon: 'power'
+    }
+  ];
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,

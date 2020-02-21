@@ -9,5 +9,6 @@ export const environment = {
     messagingSenderId: "330021434708",
     appId: "1:330021434708:web:2231505424da653fbe84c1",
     measurementId: "G-CGQMJT7XXR"
-  }
+  },
+  coleccion: "comida",
 };
