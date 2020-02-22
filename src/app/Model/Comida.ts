@@ -1,8 +1,6 @@
-import { Time } from '@angular/common';
-
 export interface Comida{
-    fecha:Date,
-    hora:Time,
+    fecha:string,
+    hora:string,
     comida:any[],
     comentario:any
 }

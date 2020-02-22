@@ -17,9 +17,10 @@ import { AuthService } from './services/auth.service';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { environment } from 'src/environments/environment';
-import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 export function HttpLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http,"./assets/i18n/",".json");
@@ -32,11 +33,14 @@ export function HttpLoaderFactory(http:HttpClient){
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    AngularFireModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig,'EjemploLog'),
+    AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    NgxQRCodeModule,
     TranslateModule.forRoot({
       loader:{
         provide: TranslateLoader,

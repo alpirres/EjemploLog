@@ -6,7 +6,7 @@ import { ReservaService } from '../services/reserva.service';
 import { NavController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
 import { UiComponent } from '../common/ui/ui.component';
-import { Toast } from 'src/util/Toast';
+import { Toast } from '../util/Toast';
 
 @Component({
   selector: 'app-reserva',
@@ -16,17 +16,19 @@ import { Toast } from 'src/util/Toast';
 export class ReservaPage implements OnInit {
 
   public mesa:string;
+  public comida:string[]=[];
+  public total:number =0;
   public reservaForm:FormGroup;
   public form = [
-    { val: 'Brabas', isChecked: true },
-    { val: 'Berenjenas', isChecked: false },
-    { val: 'Croquetas', isChecked: false },
-    { val: 'Alitas', isChecked: false },
-    { val: 'Lagrimitas', isChecked: false },
-    { val: 'Revuelto de Bacalao', isChecked: false },
-    { val: 'Almejas', isChecked: false },
-    { val: 'Ravioli', isChecked: false },
-    { val: 'Churrasco', isChecked: false }
+    { val: 'Brabas', isChecked: false, price: 6 },
+    { val: 'Berenjenas', isChecked: false, price: 7},
+    { val: 'Croquetas', isChecked: false, price: 6.5 },
+    { val: 'Alitas', isChecked: false, price: 8 },
+    { val: 'Lagrimitas', isChecked: false, price: 6 },
+    { val: 'Revuelto de Bacalao', isChecked: false, price: 8 },
+    { val: 'Almejas', isChecked: false, price: 7 },
+    { val: 'Ravioli', isChecked: false, price: 9 },
+    { val: 'Churrasco', isChecked: false, price: 8.5 }
   ];
 
   constructor(private route: ActivatedRoute,
@@ -34,11 +36,28 @@ export class ReservaPage implements OnInit {
     private formBuilder:FormBuilder,
     private navCtrl: NavController,
     public myToast:Toast,
-    private ui:UiComponent) { 
-  }
+    private ui:UiComponent) {}
 
   ngOnInit() {
     this.mesa = this.route.snapshot.paramMap.get('m');
+    this.reservaForm=this.formBuilder.group({
+      fecha:['',Validators.required],
+      hora:['',Validators.required],
+      comida:['',Validators.required],
+      comentario:['']
+    })
+  }
+
+  onChangeCheckBox(detail: boolean, name: string, price:number){
+    if(!this.comida.includes(name)&&detail){
+      this.comida.push(name);
+      this.total=price+this.total;
+    }else{
+      this.comida.splice(this.comida.indexOf(name)); 
+      if(this.total!=0){
+        this.total=this.total-price;
+      }
+    }
   }
   
   addComida(){
@@ -46,7 +65,7 @@ export class ReservaPage implements OnInit {
     data={
       fecha:this.reservaForm.get('fecha').value,
       hora:this.reservaForm.get('hora').value,
-      comida:this.reservaForm.get('comida').value,
+      comida:this.comida,
       comentario:this.reservaForm.get('comentario').value
     };
     this.ui.presentLoading();
@@ -65,6 +84,9 @@ export class ReservaPage implements OnInit {
     })
   }
 
+  ionViewDidLeave(){
+    this.reservaForm.reset();
+  }
 
 
 }
