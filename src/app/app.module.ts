@@ -21,6 +21,10 @@ import { AngularFireModule } from '@angular/fire';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
 
 export function HttpLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http,"./assets/i18n/",".json");
@@ -57,9 +61,12 @@ export function HttpLoaderFactory(http:HttpClient){
     TranslateService,
     HttpClient,
     Globalization,
+    Geolocation,
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    BarcodeScanner,
+    Base64ToGallery
   ],
   bootstrap: [AppComponent]
 })

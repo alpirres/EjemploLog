@@ -28,13 +28,13 @@ export class RegisterPage implements OnInit {
     });
   }
 
-  public tryRegister(value){
-    this.auth.registerUser(value)
+  public tryRegister(email:string, password:string){
+    this.auth.registerUser(email, password)
      .then(res => {
-       console.log(res);
-     }, err => {
-       console.log(err);
-     })
+      this.router.navigate(['/tabs']);
+     }).catch( err => {
+      console.log(err);
+    })
   }
  
   public goLoginPage(){

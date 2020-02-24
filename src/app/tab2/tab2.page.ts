@@ -12,7 +12,7 @@ export class Tab2Page {
 
   constructor(private navCtrl: NavController) {}
 
-  public cerrarSesion(mesa:string){
+  public reservar(mesa:string){
     console.log("dcdfv------"+mesa);
     this.navCtrl.navigateForward('/reserva/'+mesa);
   }

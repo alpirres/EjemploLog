@@ -18,6 +18,14 @@
           </ion-menu-toggle>
         </ion-list>
       </ion-content>
+      <ion-footer>
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+        <ion-item lines="none" [routerDirection]="'root'" [routerLink]="'/login'">
+          <ion-icon slot="start" name="power" ></ion-icon>
+          <ion-label >Cerrar Sesión</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-footer>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>

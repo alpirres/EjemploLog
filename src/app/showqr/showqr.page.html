@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>showqr</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngIf="createdCode">
+    <ngx-qrcode [qrc-value]="createdCode">
+    </ngx-qrcode>
+
+    <ion-card-content>
+        Value: {{ createdCode }}
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

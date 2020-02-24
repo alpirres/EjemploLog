@@ -17,6 +17,7 @@ export class LoginPage implements OnInit {
   constructor(private auth:AuthService, private ui:UiComponent, private router:Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.auth.logOut();
     this.validations_form = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
         Validators.required,
@@ -44,7 +45,6 @@ export class LoginPage implements OnInit {
     this.auth.loginUser(value)
     .then(res => {
       console.log(res);
-      
       this.router.navigate(['/tabs']);
     }, err => {
       

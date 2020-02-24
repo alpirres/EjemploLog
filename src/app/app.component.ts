@@ -16,16 +16,15 @@ import { Routes, Router, NavigationEnd } from '@angular/router';
 export class AppComponent {
 
   public appPages = [
-    
     {
-      title: 'Como Llegar',
-      url: '/login',
-      icon: 'navigate'
+      title: 'Mis Reservas',
+      url: '/listReser',
+      icon: 'list'
     },
     {
-      title: 'Cerrar Sesion',
-      url: 'login',
-      icon: 'power'
+      title: 'Como Llegar',
+      url: '/geolocate',
+      icon: 'navigate'
     }
   ];
   constructor(

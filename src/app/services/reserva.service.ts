@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { environment } from 'src/environments/environment';
 import { Observable, observable, Subscription } from 'rxjs';
-import { Comida } from '../Model/Comida'
+import { Comida } from '../Model/Comida';
 
 @Injectable({
   providedIn: 'root'
