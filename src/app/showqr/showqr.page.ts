@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { ModalController, NavParams } from '@ionic/angular';
 
 
 @Component({
@@ -9,22 +10,21 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 })
 export class ShowqrPage implements OnInit {
 
-  qrData = null;
-  createdCode = null;
+  private id: string;
+  private fecha: string;
+  private hora: string;
 
-  constructor(public barcodeScanner: BarcodeScanner) { }
-
+  constructor(public barcodeScanner: BarcodeScanner,
+    private navParams: NavParams, 
+    private modalController: ModalController) { 
+      this.fecha=this.navParams.get("fecha");
+      this.hora=this.navParams.get("hora");
+  }
   ngOnInit() {
   }
 
-  downloadQR(){
-
+  getTextToQr(){
+    return this.navParams.get("id");
   }
-
-  createCode () {
-    this.createdCode = this.qrData;
-    console.log(this.createdCode);
-  }
-
 
 }

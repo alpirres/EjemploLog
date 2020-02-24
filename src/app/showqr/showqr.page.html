@@ -1,18 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>showqr</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mi reserva</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-card *ngIf="createdCode">
-    <ngx-qrcode [qrc-value]="createdCode">
+  <ion-card >
+    <ngx-qrcode 
+      [qrc-element-type]="qrType" 
+      [qrc-value]="getTextToQr()" 
+      qrc-class="aclass"
+      qrc-errorCorrectionLevel="L">
     </ngx-qrcode>
-
-    <ion-card-content>
-        Value: {{ createdCode }}
-    </ion-card-content>
+    <ion-label>
+      <p>Fecha: {{fecha}}</p>
+      <p>Hora: {{hora}}</p>
+    </ion-label>
   </ion-card>
 
 

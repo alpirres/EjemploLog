@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
     this.validations_form = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+        Validators.email
       ])),
       password: new FormControl('', Validators.compose([
         Validators.minLength(5),
@@ -37,7 +37,7 @@ export class LoginPage implements OnInit {
     ],
     'password': [
       { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 6 characters long.' }
+      { type: 'minlength', message: 'Password must be at least 5 characters long.' }
     ]
   };
 
@@ -46,8 +46,8 @@ export class LoginPage implements OnInit {
     .then(res => {
       console.log(res);
       this.router.navigate(['/tabs']);
-    }, err => {
-      
+    }).catch(err=>{
+      console.log(err);
     })
   }
 

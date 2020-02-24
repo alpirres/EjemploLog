@@ -3,12 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Comida } from '../Model/Comida';
 import { ReservaService } from '../services/reserva.service';
-import { NavController } from '@ionic/angular';
+import { NavController, ModalController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
 import { UiComponent } from '../common/ui/ui.component';
 import { Toast } from '../util/Toast';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
+import { ShowqrPage } from '../showqr/showqr.page';
 
 @Component({
   selector: 'app-reserva',
@@ -34,27 +35,24 @@ export class ReservaPage implements OnInit {
     { val: 'Churrasco', isChecked: false, price: 8.5 }
   ];
   barcodeScannerOptions: BarcodeScannerOptions;
+  id: string;
 
   constructor(private route: ActivatedRoute,
     private todoS:ReservaService, 
     private formBuilder:FormBuilder,
     private navCtrl: NavController,
     private barcodeScanner:BarcodeScanner,
+    private modalController: ModalController,
     private base64:Base64ToGallery,
     public myToast:Toast,
-    private ui:UiComponent) {
-      this.barcodeScannerOptions = {
-        showTorchButton: true,
-        showFlipCameraButton: true
-      };
-    }
+    private ui:UiComponent) {}
 
   ngOnInit() {
     this.mesa = this.route.snapshot.paramMap.get('m');
     this.reservaForm=this.formBuilder.group({
       fecha:['',Validators.required],
       hora:['',Validators.required],
-      comida:['',Validators.required],
+      comida:['',Validators.minLength(1)],
       comentario:['']
     })
   }
@@ -76,30 +74,47 @@ export class ReservaPage implements OnInit {
   }
   
   addComida(){
+    let fecha= this.reservaForm.get('fecha').value.split('T')[0];
+    let fechora= this.reservaForm.get('hora').value.split('T')[1];
+    let horass=fechora.split(/(:\d.)/);
+    let hora=horass[0]+horass[1];
+    console.log(hora)
     this.data={
-      fecha:this.reservaForm.get('fecha').value,
-      hora:this.reservaForm.get('hora').value,
+      fecha:fecha,
+      hora:hora,
       comida:this.comida,
       comentario:this.reservaForm.get('comentario').value
     };
     this.ui.presentLoading();
     this.todoS.addTodo(this.data)
-    .then((ok)=>{
+    .then(async(ok)=>{
       this.myToast.presentToast("Reserva Agregada",2000,'success');
-      this.barcodeScanner.encode(this.barcodeScanner.Encode.TEXT_TYPE, this.data).then((encodedData) => {
-        console.log(encodedData);
-        this.data = encodedData;
-      }, (err) => {
-        console.log("Error occured : " + err);
-      });
+      this.id=ok.id;
     })
     .catch((err)=>{
       this.myToast.presentToast('Error Realizando Reserva',4000,'danger' )
     })
     .finally(()=>{
       this.ui.hideLoading();
-      //this.navCtrl.navigateForward('/tabs/tab2');
+      this.openModal(this.id, fecha, hora);
     })
+  }
+
+  async openModal(id:string, fecha:string, hora:string){
+    const modal = await this.modalController.create({
+      
+      component: ShowqrPage,
+      componentProps: {
+        id:id,
+        fecha:fecha,
+        hora:hora
+      }
+     });
+     
+     modal.onWillDismiss().then(d=>{
+        console.log("Se cierra la modal.");
+     });
+     return await modal.present();
   }
 
   ionViewDidLeave(){

@@ -29,9 +29,14 @@ const routes: Routes = [
     loadChildren: () => import('./geolocate/geolocate.module').then( m => m.GeolocatePageModule)
   },
   {
+    path: 'list-reservas',
+    loadChildren: () => import('./list-reservas/list-reservas.module').then( m => m.ListReservasPageModule)
+  },
+  {
     path:'**',
     redirectTo: ''
   },
+  
   
   
 ];

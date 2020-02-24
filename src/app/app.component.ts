@@ -17,8 +17,13 @@ export class AppComponent {
 
   public appPages = [
     {
+      title: 'Reservar',
+      url: '/tabs',
+      icon: 'restaurant'
+    },
+    {
       title: 'Mis Reservas',
-      url: '/listReser',
+      url: '/list-reservas',
       icon: 'list'
     },
     {

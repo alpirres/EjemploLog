@@ -5,6 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { ReservaPageRoutingModule } from './reserva-routing.module';
 import { ReservaPage } from './reserva.page';
 import { UiComponent } from '../common/ui/ui.component';
+import { ShowqrPage } from '../showqr/showqr.page';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 @NgModule({
   imports: [
@@ -12,9 +14,12 @@ import { UiComponent } from '../common/ui/ui.component';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
+    NgxQRCodeModule ,
     ReservaPageRoutingModule
   ],
-  declarations: [ReservaPage],
-  providers:[UiComponent]
+  declarations: [ReservaPage, ShowqrPage],
+  providers:[UiComponent],
+  entryComponents:[ShowqrPage],
+  exports: [ShowqrPage]
 })
 export class ReservaPageModule {}

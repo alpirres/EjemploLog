@@ -1,6 +1,17 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import {  FormBuilder } from '@angular/forms';
-import {Geolocation} from '@ionic-native/geolocation/ngx';
+import {
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  GoogleMapOptions,
+  CameraPosition,
+  MarkerOptions,
+  Marker,
+  Environment,
+  LocationService,
+  MyLocation,
+  LatLng
+} from '@ionic-native/google-maps';
 declare var google;
 
 @Component({
@@ -8,46 +19,61 @@ declare var google;
   templateUrl: './geolocate.page.html',
   styleUrls: ['./geolocate.page.scss'],
 })
-export class GeolocatePage implements OnInit, AfterViewInit {
-@ViewChild('mapElement',{static:false}) mapNativeElement: ElementRef;
+export class GeolocatePage implements OnInit {
+  @ViewChild('mapElement', { static: false }) mapNativeElement: ElementRef;
 
-  directionsService = new google.maps.DirectionsService;
-  directionsDisplay = new google.maps.DirectionsRenderer;
-  currentLocation: any = {
-    lat: 0,
-    lng: 0
-  };
-  constructor( private geolocation: Geolocation) {
+  map: GoogleMap;
+
+  constructor(private googleMaps: GoogleMaps) {
   }
 
   ngOnInit() {
+    this.loadMap();
   }
 
-
-  ngAfterViewInit(): void {
-    this.geolocation.getCurrentPosition().then((resp) => {
-      this.currentLocation.lat = resp.coords.latitude;
-      this.currentLocation.lng = resp.coords.longitude;
-    });
-    const map = new google.maps.Map(this.mapNativeElement.nativeElement, {
-      zoom: 7,
-      center: this.currentLocation
-    });
-    this.directionsDisplay.setMap(map);
-    /*const that = this;
-    this.directionsService.route({
-      origin: this.currentLocation,
-      destination: 'la polvora, la carlota (cordoba)',
-      travelMode: 'DRIVING'
-    }, (response, status) => {
-      if (status === 'OK') {
-        that.directionsDisplay.setDirections(response);
-      } else {
-        window.alert('Directions request failed due to ' + status);
+  loadMap() {
+    let mapOptions: GoogleMapOptions = {
+      camera: {
+        target: {
+          lat: 37.6734601, // default location
+          lng: -4.931912 // default location
+        },
+        zoom: 10,
+        tilt: 0
       }
-    });*/
+    };
+
+    this.map = GoogleMaps.create('map_canvas', mapOptions);
+
+    // Wait the MAP_READY before using any methods.
+    this.map.one(GoogleMapsEvent.MAP_READY)
+      .then(() => {
+        // Now you can use all methods safely.
+        this.getPosition();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
   }
 
+  getPosition(): void {
+    this.map.getMyLocation()
+      .then(response => {
+        this.map.moveCamera({
+          target: response.latLng
+        });
+        this.map.addMarker({
+          title: 'My Position',
+          icon: 'red',
+          animation: 'DROP',
+          position: response.latLng
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
 
 }

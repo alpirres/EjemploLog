@@ -8,15 +8,20 @@ import { ShowqrPageRoutingModule } from './showqr-routing.module';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 import { ShowqrPage } from './showqr.page';
+import { ReservaPageModule } from '../reserva/reserva.module';
+import { ListReservasPageModule } from '../list-reservas/list-reservas.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ReservaPageModule,
+    ListReservasPageModule,
     ShowqrPageRoutingModule,
     NgxQRCodeModule,
   ],
-  declarations: [ShowqrPage]
+  declarations: [ShowqrPage],
+  exports:[ ShowqrPage ]
 })
 export class ShowqrPageModule {}
