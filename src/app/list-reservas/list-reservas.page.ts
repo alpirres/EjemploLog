@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonVirtualScroll, ModalController } from '@ionic/angular';
+import { IonVirtualScroll, ModalController, AlertController } from '@ionic/angular';
 import { Comida } from '../Model/Comida';
 import { UiComponent } from '../common/ui/ui.component';
 import { ReservaService } from '../services/reserva.service';
 import { ShowqrPage } from '../showqr/showqr.page';
+import { Toast } from '../util/Toast';
 
 @Component({
   selector: 'app-list-reservas',
@@ -17,7 +18,9 @@ export class ListReservasPage implements OnInit {
 
   constructor(private ui:UiComponent, 
     private reserva:ReservaService,
-    private modalController: ModalController) {}
+    private modalController: ModalController,
+    public alertController: AlertController,
+    public myToast:Toast) {}
 
   ngOnInit() {
     this.refrescar();
@@ -68,7 +71,34 @@ export class ListReservasPage implements OnInit {
      return await modal.present();
   }
 
-  public borraNota(id: string) {
+   public async borraNota(id: string) {
+    const alert = await this.alertController.create({
+      header: 'Confirmar',
+      message: 'Deasea eliminar la nota',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Okay',
+          handler: async () => {
+            await this.reserva.deleteTodo(id).then((salida) => {
+              this.refrescar();
+              console.log("Borrando");
+              this.myToast.presentToast('Nota Eliminada',2000,'success');
+            }).catch((err) => {
+              console.log(err);
+            })
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+    await alert.present();
   }    
 
 

@@ -1,9 +1,12 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Menu</ion-title>
+      <ion-header color="primary" no-border style="text-align:center">
+        <ion-toolbar color="primary" style="text-align:center">
+          <ion-title style="text-align: center;font-weight: normal;font-size: 1.1rem;margin-bottom:15px;margin-top:15px"></ion-title>
+          <ion-avatar style="text-align: center;margin:auto;cursor: pointer;" (click)="updatePic()">
+              <ion-img [src]="base64Image" width="150px" style="border:2px solid #fff"></ion-img>
+          </ion-avatar>
         </ion-toolbar>
       </ion-header>
       <ion-content>

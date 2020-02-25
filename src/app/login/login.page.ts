@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { UiComponent } from '../common/ui/ui.component';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Toast } from '../util/Toast';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,12 @@ export class LoginPage implements OnInit {
 
   validations_form: FormGroup;
 
-  constructor(private auth:AuthService, private ui:UiComponent, private router:Router, private formBuilder: FormBuilder) { }
+  constructor(private auth:AuthService, 
+    private ui:UiComponent, 
+    private router:Router, 
+    private formBuilder: FormBuilder,
+    private toast:Toast
+    ) { }
 
   ngOnInit() {
     this.auth.logOut();
@@ -44,10 +50,10 @@ export class LoginPage implements OnInit {
   public loginUser(value){
     this.auth.loginUser(value)
     .then(res => {
-      console.log(res);
       this.router.navigate(['/tabs']);
     }).catch(err=>{
-      console.log(err);
+      //meter alert
+      this.toast.presentToast('Usuario o Contraseña incorrectos', 40000, 'danger');
     })
   }
 

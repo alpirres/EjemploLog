@@ -17,9 +17,8 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     NgxQRCodeModule ,
     ReservaPageRoutingModule
   ],
-  declarations: [ReservaPage, ShowqrPage],
+  declarations: [ReservaPage],
   providers:[UiComponent],
-  entryComponents:[ShowqrPage],
-  exports: [ShowqrPage]
+  entryComponents:[],
 })
 export class ReservaPageModule {}

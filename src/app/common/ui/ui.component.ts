@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-ui',
@@ -10,7 +10,9 @@ export class UiComponent implements OnInit {
 
   loading: HTMLIonLoadingElement;
 
-  constructor(private loadingController:LoadingController) { }
+  constructor(private loadingController:LoadingController,
+    private alertController:AlertController
+    ) { }
 
   ngOnInit() {}
 
@@ -27,4 +29,28 @@ export class UiComponent implements OnInit {
     }
     this.loading=null;
   }
+
+
+  public async presentAlert(id: string) {
+    const alert = await this.alertController.create({
+      header: 'Confirmar',
+      message: 'Deasea eliminar la nota',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Okay',
+          handler: async (res) => {
+            return true;
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }    
 }

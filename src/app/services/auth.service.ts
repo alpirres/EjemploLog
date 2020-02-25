@@ -10,7 +10,7 @@ import { RouterModule, RouterLink, Router } from '@angular/router';
 })
 export class AuthService {
 
-  private user:User;
+  public user:User;
 
   constructor(private local:NativeStorage, private google:GooglePlus, private router:Router) { }
   
@@ -60,14 +60,17 @@ export class AuthService {
    }
 
    loginUser(value){
-    return new Promise<any>((resolve, reject) => {
-      firebase.auth().signInWithEmailAndPassword(value.email, value.password)
+    return firebase.auth().signInWithEmailAndPassword(value.email, value.password)
       .then((res) => {
-        resolve(res);
+        let user :User={
+          email:value.email,
+          displayName:res.user.displayName,
+          imageUrl:res.user.photoURL,
+          userId:res.user.uid
+        }
+        this.user=user;
+        this.saveSesion();
       })
-      .catch((err) =>{
-        reject(err)})
-    })
    }
   
    logoutUser(){

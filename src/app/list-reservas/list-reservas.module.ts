@@ -9,18 +9,16 @@ import { ListReservasPageRoutingModule } from './list-reservas-routing.module';
 import { ListReservasPage } from './list-reservas.page';
 import { UiComponent } from '../common/ui/ui.component';
 import { ShowqrPage } from '../showqr/showqr.page';
-import { ShowqrPageModule } from '../showqr/showqr.module';
 
 @NgModule({
+  entryComponents:[],
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ShowqrPageModule,
     ListReservasPageRoutingModule
   ],
   declarations: [ListReservasPage],
-  providers:[UiComponent, ShowqrPage],
-  entryComponents: [ShowqrPage]
+  providers:[UiComponent]
 })
 export class ListReservasPageModule {}

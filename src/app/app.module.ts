@@ -18,20 +18,23 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
 import { GoogleMaps } from '@ionic-native/google-maps';
+import { ShowqrPage } from './showqr/showqr.page';
 export function HttpLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http,"./assets/i18n/",".json");
 }
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent,ShowqrPage],
+  entryComponents: [ShowqrPage],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -61,6 +64,7 @@ export function HttpLoaderFactory(http:HttpClient){
     HttpClient,
     Globalization,
     Geolocation,
+    Camera, 
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController, NavParams, NavController } from '@ionic/angular';
 
 
 @Component({
@@ -15,6 +15,7 @@ export class ShowqrPage implements OnInit {
   private hora: string;
 
   constructor(public barcodeScanner: BarcodeScanner,
+    private navCtrl:NavController,
     private navParams: NavParams, 
     private modalController: ModalController) { 
       this.fecha=this.navParams.get("fecha");
@@ -27,4 +28,7 @@ export class ShowqrPage implements OnInit {
     return this.navParams.get("id");
   }
 
+  goBack(){
+    this.navCtrl.back();
+  }
 }

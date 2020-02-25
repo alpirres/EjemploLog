@@ -23,6 +23,9 @@ export class GeolocatePage implements OnInit {
   @ViewChild('mapElement', { static: false }) mapNativeElement: ElementRef;
 
   map: GoogleMap;
+  myposition:any;
+  //directionsService = new google.maps.DirectionsService;
+  //directionsRenderer = new google.maps.DirectionsRenderer;
 
   constructor(private googleMaps: GoogleMaps) {
   }
@@ -34,35 +37,37 @@ export class GeolocatePage implements OnInit {
   loadMap() {
     let mapOptions: GoogleMapOptions = {
       camera: {
-        target: {
-          lat: 37.6734601, // default location
-          lng: -4.931912 // default location
-        },
-        zoom: 10,
-        tilt: 0
-      }
+         target: {
+           lat: 0,
+           lng: 0
+         },
+         zoom: 10,
+         tilt: 30
+       }
     };
 
-    this.map = GoogleMaps.create('map_canvas', mapOptions);
+    this.map = GoogleMaps.create('map', mapOptions);
+    //this.directionsRenderer.setMap(this.map);
 
-    // Wait the MAP_READY before using any methods.
-    this.map.one(GoogleMapsEvent.MAP_READY)
-      .then(() => {
-        // Now you can use all methods safely.
-        this.getPosition();
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
+    let marker: Marker = this.map.addMarkerSync({
+      title: 'La Polvora',
+      icon: 'blue',
+      animation: 'DROP',
+      position: {
+        lat: 37.6733774,
+        lng: -4.9319722
+      }
+    });
+    this.getPosition();
   }
 
   getPosition(): void {
     this.map.getMyLocation()
       .then(response => {
         this.map.moveCamera({
-          target: response.latLng
+          target: response.latLng,
         });
+        this.myposition=response.latLng;
         this.map.addMarker({
           title: 'My Position',
           icon: 'red',
@@ -74,6 +79,22 @@ export class GeolocatePage implements OnInit {
         console.log(error);
       });
   }
+
+  
+  /*calculateAndDisplayRoute() {
+    this.directionsService.route({
+        origin: 'chicago, il',
+        destination: 'st louis, mo',
+        travelMode: 'DRIVING'
+      },(response, status) =>{
+        if (status === 'OK') {
+    this.directionsRenderer.setDirections(response);
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
+  }*/
+  
 
 
 }
