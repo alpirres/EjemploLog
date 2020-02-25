@@ -7,6 +7,8 @@ import { Comida } from '../Model/Comida';
 @Injectable({
   providedIn: 'root'
 })
+
+//este es el servicio que se comunica con firebase
 export class ReservaService {
 
   myCollection:AngularFirestoreCollection;
@@ -42,7 +44,7 @@ export class ReservaService {
   }
 
   /**
-   * 
+   * funcion que añade una nueva comida 
    * @param myComida 
    */
   addTodo(myComida:Comida):Promise<firebase.firestore.DocumentReference>{
@@ -50,7 +52,7 @@ export class ReservaService {
   }
 
   /**
-   * 
+   * funcion para obtener todos los datos
    * @param id 
    */
   readTodoById(id:string):Observable<firebase.firestore.DocumentSnapshot>{
@@ -58,7 +60,7 @@ export class ReservaService {
   }
 
   /**
-   * 
+   * funcion que actualiza una comida mediante su id
    * @param id 
    * @param data 
    */
@@ -66,7 +68,7 @@ export class ReservaService {
     return this.myCollection.doc(id).set(data);
   }
 
-  /**
+  /**funcion que elimina
    * 
    * @param id 
    */
@@ -74,9 +76,12 @@ export class ReservaService {
     return this.myCollection.doc(id).delete();
   }
 
-
-  searchTodo(title:string): Observable<firebase.firestore.DocumentSnapshot>{
-    return this.myCollection.doc(title).get();
+/**
+ * funcion que filtra mediante el parametro de la fecha
+ * @param fecha 
+ */
+  searchTodo(fecha:string): Observable<firebase.firestore.DocumentSnapshot>{
+    return this.myCollection.doc(fecha).get();
   }
 
 }

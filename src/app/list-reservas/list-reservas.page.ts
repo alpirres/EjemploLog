@@ -15,6 +15,7 @@ export class ListReservasPage implements OnInit {
 
   @ViewChild(IonVirtualScroll, {static:true}) virtualScroll: IonVirtualScroll;
   dataList:any;
+  textoBuscar= '';
 
   constructor(private ui:UiComponent, 
     private reserva:ReservaService,
@@ -51,6 +52,12 @@ export class ListReservasPage implements OnInit {
       console.log('Cargar fallido')
       this.ui.hideLoading();
     }
+  }
+
+  public searchBar(evt){
+    console.log(evt.target.value);
+    let texto=evt.target.value;
+    this.textoBuscar=texto;
   }
 
   async editaNota(id:string ,fecha:string ,hora:string ){
@@ -99,7 +106,7 @@ export class ListReservasPage implements OnInit {
       ]
     });
     await alert.present();
-  }    
+  }   
 
 
 }

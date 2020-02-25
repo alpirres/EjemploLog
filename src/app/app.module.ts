@@ -28,12 +28,13 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { ShowqrPage } from './showqr/showqr.page';
+import { FiltroPipe } from './pipes/filtro.pipe';
 export function HttpLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http,"./assets/i18n/",".json");
 }
 
 @NgModule({
-  declarations: [AppComponent,ShowqrPage],
+  declarations: [AppComponent,ShowqrPage, FiltroPipe],
   entryComponents: [ShowqrPage],
   imports: [
     BrowserModule,

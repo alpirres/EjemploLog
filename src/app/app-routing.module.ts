@@ -21,10 +21,6 @@ const routes: Routes = [
     loadChildren: () => import('./reserva/reserva.module').then( m => m.ReservaPageModule)
   },
   {
-    path: 'showqr',
-    loadChildren: () => import('./showqr/showqr.module').then( m => m.ShowqrPageModule)
-  },
-  {
     path: 'geolocate',
     loadChildren: () => import('./geolocate/geolocate.module').then( m => m.GeolocatePageModule)
   },

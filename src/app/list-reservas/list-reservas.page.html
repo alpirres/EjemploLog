@@ -4,6 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Reservas</ion-title>
+    <ion-searchbar style="float: none; display: block; "  animated (ionChange)="searchBar ($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
@@ -17,8 +18,8 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-virtual-scroll [items]="dataList" >
-      <ion-item-sliding *virtualItem="let item">
+  <ion-virtual-scroll [items]="dataList " >
+      <ion-item-sliding *virtualItem="let item ">
         <ion-item>
         <ion-label>
           <h2>Fecha: {{item.fecha}}</h2>

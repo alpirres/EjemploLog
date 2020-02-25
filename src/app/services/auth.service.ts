@@ -51,11 +51,16 @@ export class AuthService {
   }
 
   registerUser(email:string, password:string){
-    return new Promise<any>((resolve, reject) => {
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(
-        res => resolve(res),
-        err => reject(err))
+    return firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((res) => {
+        let user :User={
+        email:email,
+        displayName:res.user.displayName,
+        imageUrl:res.user.photoURL,
+        userId:res.user.uid
+      }
+      this.user=user;
+      this.saveSesion();
       })
    }
 

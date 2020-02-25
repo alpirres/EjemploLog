@@ -24,7 +24,7 @@ export class ReservaPage implements OnInit {
   public total:number =0;
   public reservaForm:FormGroup;
   public form = [
-    { val: 'Brabas', isChecked: false, price: 6 },
+    { val: 'Bravas', isChecked: false, price: 6 },
     { val: 'Berenjenas', isChecked: false, price: 7},
     { val: 'Croquetas', isChecked: false, price: 6.5 },
     { val: 'Alitas', isChecked: false, price: 8 },
