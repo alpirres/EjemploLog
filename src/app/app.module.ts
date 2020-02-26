@@ -29,12 +29,14 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { ShowqrPage } from './showqr/showqr.page';
 import { FiltroPipe } from './pipes/filtro.pipe';
+import { ShowqrPageModule } from './showqr/showqr.module';
+import { UiComponent } from './common/ui/ui.component';
 export function HttpLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http,"./assets/i18n/",".json");
 }
 
 @NgModule({
-  declarations: [AppComponent,ShowqrPage, FiltroPipe],
+  declarations: [AppComponent,ShowqrPageModule,UiComponent, FiltroPipe],
   entryComponents: [ShowqrPage],
   imports: [
     BrowserModule,
