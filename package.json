@@ -100,12 +100,12 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-nativestorage": {},
       "cordova-plugin-googleplus": {
-        "WEB_APPLICATION_CLIENT_ID": "330021434708-bes1j0n9okr8sk66a6gj3q4bhr4tl6c0.apps.googleusercontent.com"
+        "WEB_APPLICATION_CLIENT_ID": "GOOGLEKEY"
       },
       "cordoba-plugin-ionic-googleplus": {},
       "cordoba-plugin-googleplus": {
-        "WEB_APPLICATION_CLIENT_ID": "330021434708-bes1j0n9okr8sk66a6gj3q4bhr4tl6c0.apps.googleusercontent.com",
-        "REVERSE_CLIENT_ID": "com.googleusercontent.apps.330021434708-bes1j0n9okr8sk66a6gj3q4bhr4tl6c0"
+        "WEB_APPLICATION_CLIENT_ID": "GOOGLEKEY",
+        "REVERSE_CLIENT_ID": "GOOGLEKEY"
       },
       "phonegap-plugin-barcodescanner": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
