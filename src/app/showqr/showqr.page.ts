@@ -16,40 +16,39 @@ export class ShowqrPage implements OnInit {
   private fecha: string;
   private hora: string;
 
-  constructor(public barcodeScanner: BarcodeScanner,
+  constructor(public barcodeScanner: BarcodeScanner, 
     private navCtrl:NavController,
     private navParams: NavParams, 
     private base64:Base64ToGallery,
     private toast:Toast,
     private modalController: ModalController) { 
+      this.id=this.navParams.get("id");
       this.fecha=this.navParams.get("fecha");
       this.hora=this.navParams.get("hora");
+      
   }
   ngOnInit() {
   }
 
-  getTextToQr(){
-    return this.navParams.get("id");
+  goBack(){
+    this.navCtrl.navigateForward('/tabs');
+    this.modalController.dismiss();
   }
 
-  goBack(){
-    this.navCtrl.navigateBack('/tabs');
-  }
 
   /**
    * Función que descarga el codigo qr en la galeria de un dispositivo movil
    * mediante una conversion a base 64
    */
   downloadQR(){
-    const canvas= document.queryCommandValue('src');
-    const imageData= canvas.toString();
-
+   
+    const imageData= document.getElementsByTagName('img')[0].src;
     let data = imageData.split(',')[1];
     console.log(data)
-    this.base64.base64ToGallery(data, {prefix: '_img', mediaScanner:true })
+    this.base64.base64ToGallery(data, {prefix: 'img', mediaScanner:true })
     .then(res=>{
       this.toast.presentToast('Qr guardado en la Galeria', 2000, 'success');
-    },err=>console.log('err: ', err)
+    },err=>console.log('err: ')
     );
   }
 }

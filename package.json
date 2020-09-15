@@ -68,8 +68,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
-    "cordoba-plugin-googleplus": "8.2.1",
-    "cordoba-plugin-ionic-googleplus": "8.2.1",
+    "cordova-plugin-googleplus": "8.2.1",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.1.3",
@@ -100,10 +99,6 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-nativestorage": {},
       "cordova-plugin-googleplus": {
-        "WEB_APPLICATION_CLIENT_ID": "330021434708-bes1j0n9okr8sk66a6gj3q4bhr4tl6c0.apps.googleusercontent.com"
-      },
-      "cordoba-plugin-ionic-googleplus": {},
-      "cordoba-plugin-googleplus": {
         "WEB_APPLICATION_CLIENT_ID": "330021434708-bes1j0n9okr8sk66a6gj3q4bhr4tl6c0.apps.googleusercontent.com",
         "REVERSE_CLIENT_ID": "com.googleusercontent.apps.330021434708-bes1j0n9okr8sk66a6gj3q4bhr4tl6c0"
       },

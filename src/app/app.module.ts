@@ -36,7 +36,7 @@ export function HttpLoaderFactory(http:HttpClient){
 }
 
 @NgModule({
-  declarations: [AppComponent,ShowqrPageModule,UiComponent, FiltroPipe],
+  declarations: [AppComponent,ShowqrPage,UiComponent, FiltroPipe],
   entryComponents: [ShowqrPage],
   imports: [
     BrowserModule,

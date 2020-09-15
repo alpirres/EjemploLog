@@ -28,8 +28,8 @@ export class RegisterPage implements OnInit {
     });
   }
 
-  public tryRegister(email:string, password:string){
-    this.auth.registerUser(email, password)
+  public tryRegister(value){
+    this.auth.registerUser(value)
      .then(res => {
       this.router.navigate(['/tabs']);
      }).catch( err => {

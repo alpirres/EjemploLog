@@ -97,6 +97,7 @@ export class ReservaPage implements OnInit {
     .finally(()=>{
       this.ui.hideLoading();
       this.openModal(this.id, fecha, hora);
+      this.navCtrl.navigateForward('/tabs/tab2')
     })
   }
 

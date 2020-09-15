@@ -50,11 +50,11 @@ export class AuthService {
     });
   }
 
-  registerUser(email:string, password:string){
-    return firebase.auth().createUserWithEmailAndPassword(email, password)
+  registerUser(value){
+    return firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
       .then((res) => {
         let user :User={
-        email:email,
+        email:value.email,
         displayName:res.user.displayName,
         imageUrl:res.user.photoURL,
         userId:res.user.uid

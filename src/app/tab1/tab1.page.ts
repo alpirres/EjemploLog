@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../services/auth.service';
 import { UiComponent } from '../common/ui/ui.component';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -14,20 +15,17 @@ export class Tab1Page {
   constructor(private translate: TranslateService, 
     private auth:AuthService,
     private ui:UiComponent,
+    private navCtrl: NavController,
     private router:Router) {}
 
   async ionViewDidEnter(){
     let mipalabra= await this.translate.get('hello').toPromise()
   }
 
-  public async cerrarSesion(){
-    this.ui.presentLoading();
-    await this.auth.logOut();
-    this.ui.hideLoading();
-  }
+  
 
-  public cambiarPage(){
-    this.router.navigate(['/tabs/tab2'])
+  public reservar(mesa:string){
+    this.navCtrl.navigateForward('/reserva/'+mesa);
   }
 
 }

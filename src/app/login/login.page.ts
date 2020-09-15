@@ -23,7 +23,7 @@ export class LoginPage implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.auth.logOut();
+    this.cerrarSesion();
     this.validations_form = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
         Validators.required,
@@ -34,6 +34,13 @@ export class LoginPage implements OnInit {
         Validators.required
       ])),
     });
+  }
+
+
+  public async cerrarSesion(){
+    this.ui.presentLoading();
+    await this.auth.logOut();
+    this.ui.hideLoading();
   }
 
   validation_messages = {
@@ -51,7 +58,8 @@ export class LoginPage implements OnInit {
     this.auth.loginUser(value)
     .then(res => {
       this.router.navigate(['/tabs']);
-    }).catch(err=>{
+    })
+    .catch(err=>{
       //meter alert
       this.toast.presentToast('Usuario o Contraseña incorrectos', 40000, 'danger');
     })

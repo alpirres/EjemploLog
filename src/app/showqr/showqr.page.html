@@ -11,9 +11,8 @@
 
   <ion-card >
     <ngx-qrcode 
-      [qrc-element-type]="canvas" 
-      [qrc-value]="getTextToQr()" 
-      qrc-errorCorrectionLevel="L">
+      [(qrc-element-type)]="canvas" 
+      [qrc-value]="id">
     </ngx-qrcode>
     <ion-label class="ion-padding">
       <p>Fecha: {{fecha}}</p>
